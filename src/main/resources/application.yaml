@@ -1,0 +1,15 @@
+server:
+  error:
+    include-stacktrace: never
+
+spring:
+  datasource:
+    url: r2dbc:h2:mem:placesdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''
+
+r2dbc:
+  migrate:
+    resources-paths:
+      - classpath:/db/migration/*.sql

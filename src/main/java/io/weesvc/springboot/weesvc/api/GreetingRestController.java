@@ -1,6 +1,6 @@
 package io.weesvc.springboot.weesvc.api;
 
-import io.weesvc.springboot.weesvc.domain.Greeting;
+import io.weesvc.springboot.weesvc.domain.model.Greeting;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
