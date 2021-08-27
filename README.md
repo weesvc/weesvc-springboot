@@ -29,9 +29,8 @@ http GET localhost:8080/api/places
 ```
 ```
 HTTP/1.1 200 OK
-Content-Length: 2
 Content-Type: application/json
-Date: Sat, 25 Jan 2020 05:33:57 GMT
+transfer-encoding: chunked
 
 []
 ```
@@ -41,12 +40,17 @@ http POST localhost:8080/api/places name=NISC description="NISC Lake St. Louis O
 ```
 ```
 HTTP/1.1 200 OK
-Content-Length: 8
+Content-Length: 188
 Content-Type: application/json
-Date: Sat, 25 Jan 2020 05:34:08 GMT
 
 {
-    "id": 1
+    "createdAt": "2021-08-27T11:31:36.289798Z",
+    "description": "NISC Lake St. Louis Office",
+    "id": 1,
+    "latitude": 38.7839,
+    "longitude": 90.7878,
+    "name": "NISC",
+    "updatedAt": "2021-08-27T11:31:36.289798Z"
 }
 ```
 Run the `GET` command again to retrieve _places_ which now include your newly added _place_!
@@ -55,22 +59,18 @@ http GET localhost:8080/api/places/1
 ```
 ```
 HTTP/1.1 200 OK
-Content-Length: 217
+Content-Length: 188
 Content-Type: application/json
-Date: Sat, 25 Jan 2020 05:34:18 GMT
 
-[
-    {
-        "CreatedAt": "2020-01-24T23:34:08.491999-06:00",
-        "DeletedAt": null,
-        "Description": "NISC Lake St. Louis Office",
-        "ID": 1,
-        "Latitude": 38.7839,
-        "Longitude": 90.7878,
-        "Name": "NISC",
-        "UpdatedAt": "2020-01-24T23:34:08.491999-06:00"
-    }
-]
+{
+    "createdAt": "2021-08-27T11:31:36.289798Z",
+    "description": "NISC Lake St. Louis Office",
+    "id": 1,
+    "latitude": 38.7839,
+    "longitude": 90.7878,
+    "name": "NISC",
+    "updatedAt": "2021-08-27T11:31:36.289798Z"
+}
 ```
 Use the `PATCH` command to update a specific value.  For example we'll update the `Description` as follows:
 ```shell script
@@ -78,19 +78,17 @@ http PATCH localhost:8080/api/places/1 description="Lake St. Louis"
 ```
 ```
 HTTP/1.1 200 OK
-Content-Length: 203
+Content-Length: 176
 Content-Type: application/json
-Date: Sat, 25 Jan 2020 18:13:13 GMT
 
 {
-    "CreatedAt": "2020-01-24T23:34:08.491999-06:00",
-    "DeletedAt": null,
-    "Description": "Lake St. Louis",
-    "ID": 1,
-    "Latitude": 38.7839,
-    "Longitude": 90.7878,
-    "Name": "NISC",
-    "UpdatedAt": "2020-01-25T12:13:13.351201-06:00"
+    "createdAt": "2021-08-27T11:31:36.289798Z",
+    "description": "Lake St. Louis",
+    "id": 1,
+    "latitude": 38.7839,
+    "longitude": 90.7878,
+    "name": "NISC",
+    "updatedAt": "2021-08-27T11:33:13.948471Z"
 }
 ```
 This returns the newly "patched" version of the _place_.  Next we'll remove the row using the `DELETE` method.
@@ -99,11 +97,6 @@ http DELETE localhost:8080/api/places/1
 ```
 ```
 HTTP/1.1 200 OK
-Content-Length: 21
-Content-Type: application/json
-Date: Sat, 25 Jan 2020 18:15:16 GMT
+content-length: 0
 
-{
-    "message": "removed"
-}
 ```
