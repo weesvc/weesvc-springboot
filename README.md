@@ -100,3 +100,11 @@ HTTP/1.1 200 OK
 content-length: 0
 
 ```
+
+## API Compliance
+A core requirement for all _WeeSVC_ implementations is to implement the same API which are utilized for benchmark comparisons. To ensure compliance with the required API, [k6](https://k6.io/) is utilized within the [Workbench](https://github.com/weesvc/workbench) project.
+
+To be a valid service, the following command MUST pass at 100%:
+```
+k6 run -e PORT=8080 https://raw.githubusercontent.com/weesvc/workbench/main/scripts/api-compliance.js
+```
