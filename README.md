@@ -9,6 +9,7 @@ The following external libraries were *directly* utilized in this project.
 | ---           | ---                           | ---                                         |
 | Java          | https://go.java/              | Well...it's obvious isn't it?!              |
 | SpringBoot    | https://spring.io/reactive    | Toolkit providing HTTP server and routing   |
+| Tomcat        | https://tomcat.apache.org/    | Application server runtime                  |
 | R2DBC         | https://r2dbc.io/             | Reactive API for relation databases         |
 | R2DBC Migrate | https://nkonev.name/post/136  | Migration utility for databases using R2DBC |
 | H2            | https://www.h2database.com/   | In-memory SQL database                      |
@@ -25,7 +26,7 @@ the service by simply navigating to http://localhost:8080/greeting in your brows
 
 Execute a `GET` command to retrieve the available _places_ from the database.
 ```shell script
-http GET localhost:8080/api/places
+http GET :8080/api/places
 ```
 ```
 HTTP/1.1 200 OK
@@ -36,7 +37,7 @@ transfer-encoding: chunked
 ```
 Add a _place_ into the database using a `POST` command.
 ```shell script
-http POST localhost:8080/api/places name=NISC description="NISC Lake St. Louis Office" latitude=38.7839 longitude=90.7878
+http POST :8080/api/places name=NISC description="NISC Lake St. Louis Office" latitude=38.7839 longitude=90.7878
 ```
 ```
 HTTP/1.1 200 OK
@@ -44,18 +45,18 @@ Content-Length: 188
 Content-Type: application/json
 
 {
-    "createdAt": "2021-08-27T11:31:36.289798Z",
+    "created_at": "2021-08-27T11:31:36.289798Z",
     "description": "NISC Lake St. Louis Office",
     "id": 1,
     "latitude": 38.7839,
     "longitude": 90.7878,
     "name": "NISC",
-    "updatedAt": "2021-08-27T11:31:36.289798Z"
+    "updated_at": "2021-08-27T11:31:36.289798Z"
 }
 ```
 Run the `GET` command again to retrieve _places_ which now include your newly added _place_!
 ```shell script
-http GET localhost:8080/api/places/1
+http GET :8080/api/places/1
 ```
 ```
 HTTP/1.1 200 OK
@@ -63,18 +64,18 @@ Content-Length: 188
 Content-Type: application/json
 
 {
-    "createdAt": "2021-08-27T11:31:36.289798Z",
+    "created_at": "2021-08-27T11:31:36.289798Z",
     "description": "NISC Lake St. Louis Office",
     "id": 1,
     "latitude": 38.7839,
     "longitude": 90.7878,
     "name": "NISC",
-    "updatedAt": "2021-08-27T11:31:36.289798Z"
+    "updated_at": "2021-08-27T11:31:36.289798Z"
 }
 ```
 Use the `PATCH` command to update a specific value.  For example we'll update the `Description` as follows:
 ```shell script
-http PATCH localhost:8080/api/places/1 description="Lake St. Louis"
+http PATCH :8080/api/places/1 description="Lake St. Louis"
 ```
 ```
 HTTP/1.1 200 OK
@@ -82,18 +83,18 @@ Content-Length: 176
 Content-Type: application/json
 
 {
-    "createdAt": "2021-08-27T11:31:36.289798Z",
+    "created_at": "2021-08-27T11:31:36.289798Z",
     "description": "Lake St. Louis",
     "id": 1,
     "latitude": 38.7839,
     "longitude": 90.7878,
     "name": "NISC",
-    "updatedAt": "2021-08-27T11:33:13.948471Z"
+    "updated_at": "2021-08-27T11:33:13.948471Z"
 }
 ```
 This returns the newly "patched" version of the _place_.  Next we'll remove the row using the `DELETE` method.
 ```shell script
-http DELETE localhost:8080/api/places/1
+http DELETE :8080/api/places/1
 ```
 ```
 HTTP/1.1 200 OK
