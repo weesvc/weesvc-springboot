@@ -18,8 +18,23 @@ The following external libraries were *directly* utilized in this project.
 Builds are performed using [Gradle](https://gradle.org/) wrapper scripts provided in the project root.
 
 ### Getting Started
-Run `./gradlew bootRun` from your command-line. This will build and start the service. Once fully started, you may verify
-the service by simply navigating to http://localhost:8080/greeting in your browser.
+Run `./gradlew bootRun` from your command-line. This will build and start the service. 
+Once fully started, you may verify the service by simply navigating to http://localhost:8080/greeting in your browser.
+
+#### Docker
+For those who do not have appropriate Java setup, [Docker](https://hub.docker.com/) is an option to build the application and run the application within a container.
+
+The following command to build the application within a Linux container, then copies the resulting build into a _distroless_ image for execution.
+```shell script
+docker build -t github.com/weesvc/weesvc-springboot:0.0.1-SNAPSHOT .
+```
+Once the image is available, you can simply run the provided script to start the service.
+```shell script
+./docker-run.sh
+```
+> [!CAUTION]
+> The `docker-run.sh` script will **not** maintain state between executions.
+> This means each time you start the container, you will be starting with a freshly created H2 database.
 
 ## Using the Application
 > [!TIP]
