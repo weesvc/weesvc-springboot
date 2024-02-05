@@ -1,12 +1,15 @@
 plugins {
-	id 'org.springframework.boot' version '2.5.4'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'org.springframework.boot' version '3.2.2'
+	id 'io.spring.dependency-management' version '1.1.4'
 	id 'java'
 }
 
 group = 'io.weesvc.springboot'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+
+java {
+	sourceCompatibility = '21'
+}
 
 defaultTasks "clean", "build"
 
@@ -21,11 +24,11 @@ repositories {
 }
 
 ext {
-	set('springCloudVersion', '2020.0.3')
+	set('springCloudVersion', '2023.0.0')
 }
 
 dependencies {
-	implementation 'name.nkonev.r2dbc-migrate:r2dbc-migrate-spring-boot-starter:1.7.0'
+	implementation 'name.nkonev.r2dbc-migrate:r2dbc-migrate-spring-boot-starter:2.10.3'
 	implementation 'org.springframework:spring-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
@@ -47,6 +50,6 @@ dependencyManagement {
 	}
 }
 
-test {
+tasks.named('test') {
 	useJUnitPlatform()
 }
