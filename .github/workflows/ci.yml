@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - v*
+  pull_request:
+
+jobs:
+  test-and-compliance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+          cache: 'gradle'
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+      - name: Run unit tests
+        run: |
+          ./gradlew test
+      - name: Install k6
+        run: |
+          curl https://github.com/grafana/k6/releases/download/v0.48.0/k6-v0.48.0-linux-amd64.tar.gz -L | tar xvz --strip-components 1
+      - name: k6 Compliance
+        run: |
+          ./gradlew bootRun &
+          sleep 3s
+          ./k6 run -e PORT=8080 https://raw.githubusercontent.com/weesvc/workbench/main/scripts/api-compliance.js
