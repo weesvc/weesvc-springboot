@@ -22,13 +22,14 @@ Run `./gradlew bootRun` from your command-line. This will build and start the se
 the service by simply navigating to http://localhost:8080/greeting in your browser.
 
 ## Using the Application
-:point_up: TIP: Use the very cool [HTTPie](https://httpie.org/) application for testing locally from the command-line.
+> [!TIP]
+> Use the very cool [HTTPie](https://httpie.org/) application for testing locally from the command-line.
 
 Execute a `GET` command to retrieve the available _places_ from the database.
 ```shell script
 http GET :8080/api/places
 ```
-```
+```shell
 HTTP/1.1 200 OK
 Content-Type: application/json
 transfer-encoding: chunked
@@ -39,7 +40,7 @@ Add a _place_ into the database using a `POST` command.
 ```shell script
 http POST :8080/api/places name=NISC description="NISC Lake St. Louis Office" latitude=38.7839 longitude=90.7878
 ```
-```
+```shell
 HTTP/1.1 200 OK
 Content-Length: 188
 Content-Type: application/json
@@ -58,7 +59,7 @@ Run the `GET` command again to retrieve _places_ which now include your newly ad
 ```shell script
 http GET :8080/api/places/1
 ```
-```
+```shell
 HTTP/1.1 200 OK
 Content-Length: 188
 Content-Type: application/json
@@ -77,7 +78,7 @@ Use the `PATCH` command to update a specific value.  For example we'll update th
 ```shell script
 http PATCH :8080/api/places/1 description="Lake St. Louis"
 ```
-```
+```shell
 HTTP/1.1 200 OK
 Content-Length: 176
 Content-Type: application/json
@@ -96,7 +97,7 @@ This returns the newly "patched" version of the _place_.  Next we'll remove the 
 ```shell script
 http DELETE :8080/api/places/1
 ```
-```
+```shell
 HTTP/1.1 200 OK
 content-length: 0
 
