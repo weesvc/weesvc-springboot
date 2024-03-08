@@ -6,7 +6,6 @@ import io.weesvc.springboot.weesvc.domain.model.Place;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
 import java.time.Duration;
 import java.util.List;
@@ -18,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = { "spring.r2dbc.url=r2dbc:tc:postgresql:///testdb?TC_IMAGE_TAG=15.3-alpine" }
 )
-@ActiveProfiles("test")
 public class PlacesRestControllerTests {
 
     private static final Duration ONE_SECOND_DURATION = Duration.ofSeconds(1);

@@ -12,3 +12,8 @@ r2dbc:
   migrate:
     resources-paths:
       - classpath:/db/migration/*.sql
+
+logging:
+  level:
+    root: INFO
+    io.weesvc.springboot.weesvc.api: DEBUG
