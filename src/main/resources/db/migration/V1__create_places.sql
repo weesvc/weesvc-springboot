@@ -1,8 +1,8 @@
 CREATE TABLE places
 (
-    id          BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name        VARCHAR UNIQUE NOT NULL,
-    description VARCHAR,
+    id          SERIAL PRIMARY KEY,
+    name        TEXT UNIQUE NOT NULL,
+    description TEXT,
     latitude    REAL,
     longitude   REAL,
     created_at  TIMESTAMP      NOT NULL,

@@ -3,13 +3,17 @@ server:
     include-stacktrace: never
 
 spring:
-  datasource:
-    url: r2dbc:h2:mem:placesdb
-    driverClassName: org.h2.Driver
-    username: sa
-    password: ''
+  r2dbc:
+    url: r2dbc:postgres://localhost:5432/defaultdb
+    username: postgres
+    password: postgres
 
 r2dbc:
   migrate:
     resources-paths:
       - classpath:/db/migration/*.sql
+
+logging:
+  level:
+    root: INFO
+    io.weesvc.springboot.weesvc.api: DEBUG
